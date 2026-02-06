@@ -2,8 +2,15 @@
 <html lang="{{ $.Site.LanguageCode }}">
     {{- partial "head.html" . -}}
     <body a="{{ $.Site.Params.theme_config.appearance | default "auto" }}">
+        {{- $showToc := true -}}
+        {{- if isset .Params "toc" -}}
+            {{- $showToc = .Params.toc -}}
+        {{- end -}}
+        {{- $toc := .TableOfContents -}}
+        {{- $hasToc := gt (len (findRE "<a href=" $toc)) 0 -}}
+
         <main class="page-content" aria-label="Content">
-            <div class="w{{ if .Params.toc }} w--toc{{ end }}">
+            <div class="w{{ if and $showToc $hasToc }} w--toc{{ end }}">
                 <div class="post-meta">
                     {{ partial "back_link.html" .}}
                     <p>

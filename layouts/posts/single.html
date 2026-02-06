@@ -1,16 +1,23 @@
 {{ define "main" }}
 
+{{- $showToc := true -}}
+{{- if isset .Params "toc" -}}
+    {{- $showToc = .Params.toc -}}
+{{- end -}}
+{{- $toc := .TableOfContents -}}
+{{- $hasToc := gt (len (findRE "<a href=" $toc)) 0 -}}
+
 <article class="post">
-    <div class="post-layout{{ if .Params.toc }} has-toc{{ end }}">
+    <div class="post-layout{{ if and $showToc $hasToc }} has-toc{{ end }}">
         <div class="post-main">
             <h1>{{ .Title }}</h1>
             {{ .Content }}
         </div>
 
-        {{ if .Params.toc }}
+        {{ if and $showToc $hasToc }}
             <aside class="post-toc{{ if .Params.tocBorder }} toc{{ end }}" aria-label="Table of contents">
                 <div class="post-toc__title">On this page</div>
-                {{ .TableOfContents }}
+                {{ $toc }}
             </aside>
         {{ end }}
     </div>
