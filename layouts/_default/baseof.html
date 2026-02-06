@@ -10,7 +10,7 @@
         {{- $hasToc := gt (len (findRE "<a href=" $toc)) 0 -}}
 
         <main class="page-content" aria-label="Content">
-            <div class="w{{ if and $showToc $hasToc }} w--toc{{ end }}">
+            <div class="w{{ if and .IsPage $hasToc }} w--toc{{ end }}">
                 {{- block "main" . }}{{- end }}
                 {{ partial "footer.html" }}
             </div>

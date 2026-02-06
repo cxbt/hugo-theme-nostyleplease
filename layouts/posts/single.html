@@ -8,16 +8,18 @@
 {{- $hasToc := gt (len (findRE "<a href=" $toc)) 0 -}}
 
 <article class="post">
-    <div class="post-layout{{ if and $showToc $hasToc }} has-toc{{ end }}">
+    <div class="post-layout{{ if $hasToc }} has-toc{{ end }}">
         <div class="post-main">
             <h1>{{ .Title }}</h1>
             {{ .Content }}
         </div>
 
-        {{ if and $showToc $hasToc }}
-            <aside class="post-toc{{ if .Params.tocBorder }} toc{{ end }}" aria-label="Table of contents">
-                <div class="post-toc__title">On this page</div>
-                {{ $toc }}
+        {{ if $hasToc }}
+            <aside class="post-toc{{ if and $showToc .Params.tocBorder }} toc{{ end }}" aria-label="On this page">
+                {{ if $showToc }}
+                    <div class="post-toc__title">On this page</div>
+                    {{ $toc }}
+                {{ end }}
                 <a class="post-toc__top" href="#" data-toc-top hidden>[TOP]</a>
             </aside>
         {{ end }}
