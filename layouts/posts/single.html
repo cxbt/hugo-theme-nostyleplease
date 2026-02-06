@@ -1,14 +1,18 @@
 {{ define "main" }}
 
-<article>
-    <h1>{{ .Title }}</h1>
+<article class="post">
+    <div class="post-layout{{ if .Params.toc }} has-toc{{ end }}">
+        <div class="post-main">
+            <h1>{{ .Title }}</h1>
+            {{ .Content }}
+        </div>
 
-    {{ if .Params.toc }}
-        <aside {{ if .Params.tocBorder }} class="toc" {{ end }}>
-            {{ .TableOfContents }}
-        </aside>
-    {{ end }}
-
-    {{ .Content }}
+        {{ if .Params.toc }}
+            <aside class="post-toc{{ if .Params.tocBorder }} toc{{ end }}" aria-label="Table of contents">
+                <div class="post-toc__title">On this page</div>
+                {{ .TableOfContents }}
+            </aside>
+        {{ end }}
+    </div>
 </article>
 {{ end }}

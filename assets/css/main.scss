@@ -179,3 +179,75 @@ details[open] summary {
 .toc {
   padding: 1rem;
 }
+
+// Right-side sticky table of contents (Notion-like).
+.w--toc {
+  max-width: 960px;
+}
+
+.post-layout.has-toc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16rem;
+  grid-template-areas: "main toc";
+  gap: 2rem;
+  align-items: start;
+}
+
+.post-main {
+  grid-area: main;
+  min-width: 0; // Prevent long code blocks/URLs from breaking the grid.
+}
+
+.post-toc {
+  grid-area: toc;
+  align-self: start;
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow: auto;
+
+  // Default styling when tocBorder is not enabled.
+  border-left: 1px solid currentColor;
+  padding-left: 1rem;
+}
+
+// When tocBorder=true, the template adds .toc which already includes padding+border.
+.post-toc.toc {
+  border-left: none;
+  padding-left: 0;
+}
+
+.post-toc__title {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin: 0 0 0.5rem 0;
+}
+
+.post-toc nav#TableOfContents {
+  font-size: 0.95rem;
+}
+
+.post-toc nav#TableOfContents ul {
+  margin: 0.5rem 0;
+  padding-left: 1.1rem;
+}
+
+.post-toc nav#TableOfContents li {
+  margin: 0.25rem 0;
+}
+
+@media (max-width: 900px) {
+  .post-layout.has-toc {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "toc"
+      "main";
+  }
+
+  .post-toc {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    margin: 1rem 0;
+  }
+}
