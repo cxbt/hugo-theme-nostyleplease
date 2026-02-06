@@ -205,7 +205,9 @@ details[open] summary {
   position: sticky;
   top: 2rem;
   max-height: calc(100vh - 4rem);
-  overflow: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   // Default styling when tocBorder is not enabled.
   border-left: 1px solid currentColor;
@@ -221,6 +223,9 @@ details[open] summary {
 }
 
 .post-toc nav#TableOfContents {
+  flex: 1 1 auto;
+  overflow: auto;
+  min-height: 0;
   font-size: 0.95rem;
 }
 
@@ -231,6 +236,14 @@ details[open] summary {
 
 .post-toc nav#TableOfContents li {
   margin: 0.25rem 0;
+}
+
+.post-toc__top {
+  display: block;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid currentColor;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 900px) {
@@ -246,5 +259,10 @@ details[open] summary {
     max-height: none;
     overflow: visible;
     margin: 1rem 0;
+  }
+
+  .post-toc nav#TableOfContents {
+    flex: initial;
+    overflow: visible;
   }
 }

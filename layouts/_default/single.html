@@ -26,6 +26,7 @@
             <aside class="post-toc{{ if .Params.tocBorder }} toc{{ end }}" aria-label="Table of contents">
                 <div class="post-toc__title">On this page</div>
                 {{ $toc }}
+                <a class="post-toc__top" href="#" data-toc-top hidden>[TOP]</a>
             </aside>
         {{ end }}
     </div>
