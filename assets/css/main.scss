@@ -40,8 +40,9 @@
   }
 
   .toc {
-    border: thin solid $--primary-text-color;
-    padding: 1rem;
+    border: 0;
+    border-left: 1px solid currentColor;
+    padding: 0 0 0 1rem;
   }
 
   figcaption { color: $--secondary-text-color; }
@@ -177,7 +178,7 @@ details[open] summary {
 }
 
 .toc {
-  padding: 1rem;
+  padding: 0 0 0 1rem;
 }
 
 // Right-side sticky table of contents (Notion-like).
@@ -211,11 +212,7 @@ details[open] summary {
   padding-left: 1rem;
 }
 
-// When tocBorder=true, the template adds .toc which already includes padding+border.
-.post-toc.toc {
-  border-left: none;
-  padding-left: 0;
-}
+// `.toc` is an optional extra class (tocBorder=true). It shares the same base style.
 
 .post-toc__title {
   font-size: 0.9rem;
