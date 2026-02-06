@@ -1,0 +1,12 @@
+<script>
+  (function () {
+    try {
+      const key = "nostyleplease-appearance";
+      const saved = localStorage.getItem(key);
+      if (saved === "light" || saved === "dark" || saved === "auto") {
+        document.body.setAttribute("a", saved);
+      }
+    } catch (_) {}
+  })();
+</script>
+

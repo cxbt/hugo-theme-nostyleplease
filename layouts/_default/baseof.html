@@ -2,6 +2,7 @@
 <html lang="{{ $.Site.LanguageCode }}">
     {{- partial "head.html" . -}}
     <body a="{{ $.Site.Params.theme_config.appearance | default "auto" }}">
+        {{- partial "theme_init.html" . -}}
         {{- $showToc := true -}}
         {{- if isset .Params "toc" -}}
             {{- $showToc = .Params.toc -}}
@@ -15,5 +16,6 @@
                 {{ partial "footer.html" }}
             </div>
         </main>
+        {{- partial "theme_toggle.html" . -}}
     </body>
 </html>

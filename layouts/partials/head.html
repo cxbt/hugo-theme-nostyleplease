@@ -20,5 +20,7 @@
   <link rel="stylesheet" href="{{ $style.Permalink | relURL }}" integrity="{{ $style.Data.Integrity }}" />
   {{ $tocTopJs := resources.Get "js/toc_top.js" | resources.Minify | resources.Fingerprint "sha512" }}
   <script defer src="{{ $tocTopJs.Permalink | relURL }}" integrity="{{ $tocTopJs.Data.Integrity }}"></script>
+  {{ $themeToggleJs := resources.Get "js/theme_toggle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+  <script defer src="{{ $themeToggleJs.Permalink | relURL }}" integrity="{{ $themeToggleJs.Data.Integrity }}"></script>
   {{ if .Params.mathjax }} {{ partial "mathjax.html" . }} {{ end }}
 </head>
