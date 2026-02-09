@@ -269,7 +269,45 @@ details[open] summary {
   border-top: 1px solid currentColor;
 }
 
+body[a="light"] .theme-toggle {
+  /* Opposite-of-applied theme: light page => dark toggle (moon). */
+  --toggle-bg: rgba(0, 0, 0, 0.72);
+  --toggle-bg-hover: rgba(0, 0, 0, 0.84);
+  --toggle-fg: #ffffff;
+}
+
+body[a="dark"] .theme-toggle {
+  /* Opposite-of-applied theme: dark page => light toggle (sun). */
+  --toggle-bg: rgba(255, 255, 255, 0.86);
+  --toggle-bg-hover: rgba(255, 255, 255, 0.96);
+  --toggle-fg: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  body[a="auto"] .theme-toggle,
+  body:not([a]) .theme-toggle {
+    --toggle-bg: rgba(255, 255, 255, 0.86);
+    --toggle-bg-hover: rgba(255, 255, 255, 0.96);
+    --toggle-fg: #000000;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body[a="auto"] .theme-toggle,
+  body:not([a]) .theme-toggle {
+    --toggle-bg: rgba(0, 0, 0, 0.72);
+    --toggle-bg-hover: rgba(0, 0, 0, 0.84);
+    --toggle-fg: #ffffff;
+  }
+}
+
 .theme-toggle {
+  --toggle-bg: rgba(127, 127, 127, 0.08);
+  --toggle-bg-hover: rgba(127, 127, 127, 0.16);
+  --toggle-fg: inherit;
+  --toggle-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  --toggle-shadow-hover: 0 12px 34px rgba(0, 0, 0, 0.28);
+
   position: fixed;
   right: 1.25rem;
   bottom: 1.25rem;
@@ -277,22 +315,22 @@ details[open] summary {
   height: 3rem;
   border-radius: 9999px;
   border: 0;
-  background: rgba(127, 127, 127, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  background-color: var(--toggle-bg);
+  box-shadow: var(--toggle-shadow);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  color: inherit;
+  color: var(--toggle-fg);
   font: inherit;
   display: grid;
   place-items: center;
   cursor: pointer;
   z-index: 1000;
-  transition: background 160ms ease, box-shadow 160ms ease;
+  transition: background-color 220ms ease, color 220ms ease, box-shadow 160ms ease;
 }
 
 .theme-toggle:hover {
-  background: rgba(127, 127, 127, 0.16);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+  background-color: var(--toggle-bg-hover);
+  box-shadow: var(--toggle-shadow-hover);
 }
 
 .theme-toggle:focus-visible {
