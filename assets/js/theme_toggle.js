@@ -35,8 +35,8 @@
       const current = getCurrentTheme();
       const next = current === "dark" ? "light" : "dark";
 
-      // Show the target theme as a single-letter label: L or D.
-      if (label) label.textContent = next === "dark" ? "D" : "L";
+      // Show the target theme icon: 🌙 (dark) / ☀️ (light).
+      if (label) label.textContent = next === "dark" ? "🌙" : "☀️";
       button.setAttribute("aria-label", `Switch to ${next} mode`);
       button.title = `Switch to ${next} mode`;
     }
@@ -44,8 +44,12 @@
     button.addEventListener("click", () => {
       const current = getCurrentTheme();
       const next = current === "dark" ? "light" : "dark";
-      setTheme(next);
-      updateUi();
+      if (label) label.classList.add("theme-toggle__label--fading");
+      window.setTimeout(() => {
+        setTheme(next);
+        updateUi();
+        if (label) label.classList.remove("theme-toggle__label--fading");
+      }, 120);
     });
 
     // If the site is in auto mode and the user didn't override it, keep the
@@ -67,4 +71,3 @@
     init();
   }
 })();
-

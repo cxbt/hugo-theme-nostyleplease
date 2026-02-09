@@ -276,8 +276,13 @@ details[open] summary {
 }
 
 .theme-toggle__label {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   line-height: 1;
+  transition: opacity 160ms ease;
+}
+
+.theme-toggle__label--fading {
+  opacity: 0;
 }
 
 @media (max-width: 900px) {
