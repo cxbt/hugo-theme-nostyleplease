@@ -256,18 +256,23 @@ details[open] summary {
   width: 3rem;
   height: 3rem;
   border-radius: 9999px;
-  border: 1px solid currentColor;
+  border: 0;
   background: rgba(127, 127, 127, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   color: inherit;
   font: inherit;
   display: grid;
   place-items: center;
   cursor: pointer;
   z-index: 1000;
+  transition: background 160ms ease, box-shadow 160ms ease;
 }
 
 .theme-toggle:hover {
   background: rgba(127, 127, 127, 0.16);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
 }
 
 .theme-toggle:focus-visible {
