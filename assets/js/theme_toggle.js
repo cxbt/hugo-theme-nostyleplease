@@ -30,6 +30,7 @@
     if (!button) return;
 
     const label = button.querySelector(".theme-toggle__label");
+    let transitionTimer = null;
 
     function updateUi() {
       const current = getCurrentTheme();
@@ -44,6 +45,16 @@
     button.addEventListener("click", () => {
       const current = getCurrentTheme();
       const next = current === "dark" ? "light" : "dark";
+
+      // Apply color transitions only during explicit toggles.
+      if (document.body) {
+        document.body.classList.add("theme-transition");
+        if (transitionTimer) window.clearTimeout(transitionTimer);
+        transitionTimer = window.setTimeout(() => {
+          document.body && document.body.classList.remove("theme-transition");
+        }, 400);
+      }
+
       if (label) label.classList.add("theme-toggle__label--fading");
       window.setTimeout(() => {
         setTheme(next);
